@@ -9,42 +9,23 @@
 #import "ViewController.h"
 #import "PopupViewController.h"
 
-@interface ViewController ()
-
-@property(nonatomic, strong) PopupViewController* popupViewController;
-
-- (IBAction)popup:(id)sender;
-
-@end
-
 @implementation ViewController
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-  self.popupViewController = [[PopupViewController alloc] init];
-  [self addChildViewController:self.popupViewController];
-  [self.popupViewController didMoveToParentViewController:self];
-  
-  //
-  //self.popupViewController.view.backgroundColor = [UIColor redColor];
-  
-}
-
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)popup:(id)sender
 {
-  [self.view addSubview:self.popupViewController.view];
+  PopupViewController *popupViewController = [[PopupViewController alloc] init];
+  [self addChildViewController:popupViewController];
+  [popupViewController didMoveToParentViewController:self];
+  [self.view addSubview:popupViewController.view];
   
-  CGPoint center = self.popupViewController.contentView.center;
+  CGPoint center = popupViewController.contentView.center;
   
-  UIView* view = self.popupViewController.contentView;
+  UIView* view = popupViewController.contentView;
   
   view.transform = CGAffineTransformScale(CGAffineTransformIdentity,0.5f,0.5f);
   view.center = center;
